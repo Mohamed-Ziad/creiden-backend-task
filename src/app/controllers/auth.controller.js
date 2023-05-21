@@ -7,15 +7,15 @@ exports.register = async (req, res) => {
   console.log(req.body);
   try {
     let { name, email, password } = req.body;
-    let validate = RegisterSchema.validate(({ name, email, password }))
+    let validate = RegisterSchema.validate(({ name, email, password }));
 
-    if (validate.error) return res.status(400).json({ error: validate.error.details[0].message })
+    if (validate.error) return res.status(400).json({ error: validate.error.details[0].message });
 
     let encodedPassword = await _bcrypt.Hash(password);
 
     await _authService.register({ name, email, password: encodedPassword });
 
-    return res.status(200).json("user registerd")
+    return res.status(200).json("user registerd");
 
   } catch (error) {
     console.log({ error })

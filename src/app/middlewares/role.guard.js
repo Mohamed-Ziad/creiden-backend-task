@@ -5,12 +5,27 @@ exports.AdminGuard = (req, res, next) => {
   try {
     var decoded = _jwt.Verify(token);
     if (decoded.role === "admin") {
-     return next()
+      return next()
     }
-    return res.status(403).send("You Don't Have a permission") 
+    return res.status(403).send("You Don't Have a permission")
   } catch (err) {
     // err
     return res.status(401).send("Not Authorized #$#")
   }
+}
 
+
+exports.UserGuard = (req, res, next) => {
+  let token = req.headers.authorization.split(" ")[1];
+  try {
+    var decoded = _jwt.Verify(token);
+    console.log(`${req.params.userId} || ${decoded.userId}`)
+    if (decoded.role === "admin" || req.params.userId === decoded.userId) {
+      return next();
+    }
+    return res.status(403).send("You Don't Have a permission");
+  } catch (err) {
+    // err
+    return res.status(401).send("Not Authorized");
+  }
 }

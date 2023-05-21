@@ -14,7 +14,7 @@ exports.getAll = async () => {
 
 exports.getOne = async (userId) => {
   try {
-    let findUser = await UserModel.findOne({ _id: userId });
+    let findUser = await UserModel.findById(userId);
     return findUser;
   } catch (error) {
     throw error;
@@ -32,7 +32,7 @@ exports.create = async (data) => {
     if (error.keyPattern.email && error.code === 11000) {
       throw `The Email '${error.keyValue.email}' Already is Exists.`;
     }
-    
+
     throw error
   }
 }
@@ -40,7 +40,7 @@ exports.create = async (data) => {
 exports.update = async (data) => {
   try {
 
-    let updateUser = await UserModel.findByIdAndUpdate(data.userId, data);
+    let updateUser = await UserModel.findByIdAndUpdate(data.userId, data, { new: true });
 
     return updateUser;
   } catch (error) {

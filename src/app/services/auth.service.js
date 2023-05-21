@@ -3,7 +3,10 @@ const UserModel = require("../models/user.model");
 exports.register = async (userdata) => {
   console.log({userdata})
   try {
-    let newUser = await new UserModel({ ...userdata, role: "user" });
+    let newUser = await new UserModel({ ...userdata, role: "user", image: {
+      fullPath: '',
+      relativePath: ''
+    } });
 
     await newUser.save();
 

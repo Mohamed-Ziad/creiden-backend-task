@@ -16,7 +16,6 @@ const UserSchema = Joi.object({
     fullPath: Joi.string(),
     relativePath: Joi.string()
   }),
-
 })
 
 

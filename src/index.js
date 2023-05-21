@@ -24,7 +24,7 @@ const userRoutes = require("./app/routes/user.routes");
 
 
 app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
+app.use("/api/users", userRoutes);
 
 
 
