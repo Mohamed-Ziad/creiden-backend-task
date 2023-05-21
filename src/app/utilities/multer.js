@@ -4,7 +4,7 @@ const multer = require("multer");
 let storage = multer.diskStorage({
   destination(req, file, cb) {
     if (images.includes(file.mimetype) && file.fieldname === "image") {
-      cb(null, './app/wwwroot/images/users')
+      cb(null, './app/wwwroot/images')
 
     } else {
       cb("unknown file type", file.mimetype)

@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const _SECRET_KEY = process.env.JWT_SECRET_KEY;
+const _SECRET_KEY = `C@TCH+YOUR+$ELF`;
 
 exports.Generate = payload => jwt.sign(payload, _SECRET_KEY);
 
