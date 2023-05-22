@@ -6,6 +6,8 @@ exports.getAll = async () => {
   try {
     let listOfUsers = await UserModel.find().select("-password -role");
 
+    
+    
     return listOfUsers
   } catch (error) {
     throw error
@@ -15,6 +17,8 @@ exports.getAll = async () => {
 exports.getOne = async (userId) => {
   try {
     let findUser = await UserModel.findById(userId);
+
+    
     return findUser;
   } catch (error) {
     throw error;

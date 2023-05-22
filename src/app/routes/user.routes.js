@@ -14,15 +14,16 @@ _router.post("/",
     _storeImage.storeImage.fields([{ name: "image", maxCount: 1 }]),
     _userController.create)
 
-_router.put("/update-user/:userId",
+_router.put("/:userId",
     _guard.authorization,
     _roleGuard.UserGuard,
     _storeImage.storeImage.fields([{ name: "image", maxCount: 1 }]),
     _userController.update)
 
-_router.delete("/",
+_router.delete("/:userId",
     _guard.authorization,
     _roleGuard.UserGuard,
+    _userController.delete
 )
 
 module.exports = _router;

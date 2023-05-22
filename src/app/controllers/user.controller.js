@@ -18,10 +18,13 @@ exports.getAll = async (req, res) => {
 
 exports.getOne = async (req, res) => {
   try {
-    const listOfUsers = await _userService.getOne(req.params.userId);
+    const user = await _userService.getOne(req.params.userId);
 
-    return res.status(200).json(listOfUsers);
+    if (!user) return res.status(404).send(`User with id=${req.params.userId} isn't Defined`)
+
+    return res.status(200).json(user);
   } catch (error) {
+
     return res.status(500).json(error)
   }
 }
@@ -72,6 +75,9 @@ exports.update = async (req, res) => {
     const findUser = await _userService.getOne(userId);
     const { name, email, password, role } = req.body;
 
+    if (!findUser) return res.status(404).send(`User with id=${req.params.userId} isn't Defined`)
+
+    
     let encodedPassword = await _bcrypt.Hash(password);
     console.log(req.files)
     let image;
@@ -116,9 +122,10 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
   try {
-    const deleteUser = await _userService.delete(req.body.userId);
+    const findUser = await _userService.delete(req.params.userId);
+    if (!findUser) return res.status(404).send(`User with id=${req.params.userId} isn't Defined`)
 
-    return res.status(200).json(deleteUser);
+    return res.status(200).json({ message: "User Deleted", success: true });
   } catch (error) {
     return res.status(500).json(error)
   }
