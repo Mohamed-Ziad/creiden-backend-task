@@ -28,6 +28,6 @@ app.use("/api/users", userRoutes);
 
 
 
-app.listen(3300, () => {
+app.listen(3000, () => {
     console.log("IS RUNNING");
 })
