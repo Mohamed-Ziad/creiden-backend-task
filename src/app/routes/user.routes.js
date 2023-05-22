@@ -16,7 +16,7 @@ _router.post("/",
 
 _router.put("/update-user/:userId",
     _guard.authorization,
-    // _roleGuard.UserGuard,
+    _roleGuard.UserGuard,
     _storeImage.storeImage.fields([{ name: "image", maxCount: 1 }]),
     _userController.update)
 

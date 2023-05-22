@@ -19,7 +19,6 @@ exports.UserGuard = (req, res, next) => {
   let token = req.headers.authorization.split(" ")[1];
   try {
     var decoded = _jwt.Verify(token);
-    console.log(`${req.params.userId} || ${decoded.userId}`)
     if (decoded.role === "admin" || req.params.userId === decoded.userId) {
       return next();
     }
