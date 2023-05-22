@@ -86,8 +86,8 @@ exports.update = async (req, res) => {
       password,
       role,
       image: {
-        fullPath: image.path || findUser.image.fullPath,
-        relativePath: image.filename || findUser.image.relativePath
+        fullPath: image?.path || findUser.image.fullPath,
+        relativePath: image?.filename || findUser.image.relativePath
       }
     });
 
@@ -99,8 +99,8 @@ exports.update = async (req, res) => {
 
     const updateUser = await _userService.update({
       userId, name, password: encodedPassword, email, role, image: {
-        fullPath: image.path,
-        relativePath: image.filename
+        fullPath: image?.path || findUser.image.fullPath,
+        relativePath: image?.filename || findUser.image.relativePath
       }
     });
 
